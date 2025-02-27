@@ -50,8 +50,6 @@ class WishListSuccessState extends ProductScreenStates {
   WishListSuccessState({required this.wishListResponseEntity});
 }
 class AddWishListLoadingState extends ProductScreenStates {}
-class RemoveWishListLoadingState extends ProductScreenStates {}
-
 class AddWishListErrorState extends ProductScreenStates {
   Failures failures;
 

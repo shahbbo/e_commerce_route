@@ -48,7 +48,6 @@ class CartScreenCubit extends Cubit<CartStates> {
     emit(UpdateCountInCartLoadingState());
     var either = await updateCountInCartUseCase.invoke(productId, count);
     either.fold((l) {
-      print('error: ${l.errorMessage}');
       emit(UpdateCountInCartErrorState(failures: l));
     }, (response) {
       emit(UpdateCountInCartSuccessState(cartResponseEntity: response));
