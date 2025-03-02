@@ -16,7 +16,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   @override
   Future<Either<Failures, CategoryOrBrandResponseDto>> getAllCategories() async {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.get(EndPoints.categories),
       (data) => CategoryOrBrandResponseDto.fromJson(data),
     );
@@ -24,7 +24,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
 
   @override
   Future<Either<Failures, CategoryOrBrandResponseDto>> getAllBrands() async {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.get(EndPoints.brands),
       (data) => CategoryOrBrandResponseDto.fromJson(data),
     );

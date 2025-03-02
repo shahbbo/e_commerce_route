@@ -25,6 +25,10 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failures, SignInEntity>> login(
       String email, String password) async {
     var either = await authRemoteDataSource.login(email, password);
+    either.fold(
+          (error) => print("Failure: ${error.errorMessage}"),
+          (response) => print("Success: ${response.statusMsg}  & ${response.message}"),
+    );
     return either.fold((error) => Left(error), (response) => Right(response));
   }
 }

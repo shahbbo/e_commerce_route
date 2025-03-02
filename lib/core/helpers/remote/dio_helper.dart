@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce_route/core/helpers/local/cache_helper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../resources/constants_manager.dart';
 import 'dio_interceptor.dart';
@@ -12,10 +14,26 @@ class DioHelper {
   DioHelper() {
     dio = Dio();
     dio.interceptors.add(DioInterceptor());
+    dio.interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90,
+        enabled: kDebugMode,
+        filter: (options, args) {
+          if (options.path.contains('/posts')) return false;
+          if (args.isResponse && args.hasUint8ListData) return false;
+          return true;
+        }
+    )
+    );
   }
 
 
-  String? token = CacheHelper.getData(key: 'token') as String?;
+  String? get token => CacheHelper.getData(key: 'token') as String?;
 
   Future<Response> get(String endPoint,
       {Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers}) {

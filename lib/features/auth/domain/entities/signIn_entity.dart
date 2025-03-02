@@ -1,4 +1,3 @@
-
 class SignInEntity {
   SignInEntity({
       this.message, 

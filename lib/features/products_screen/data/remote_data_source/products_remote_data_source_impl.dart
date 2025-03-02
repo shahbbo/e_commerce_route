@@ -17,7 +17,7 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
 
   @override
   Future<Either<Failures, ProductRDto>> getAllProducts()async {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.get(EndPoints.products),
       (data) => ProductRDto.fromJson(data),
     );
@@ -26,7 +26,7 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
   @override
   Future<Either<Failures, AddToCartDto>> addToCart(
       String productId) async {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.post(EndPoints.cart, body: {'productId': productId}),
       (data) => AddToCartDto.fromJson(data),
     );

@@ -2,14 +2,40 @@
 import '../../../../domain/entities/signUp_entity.dart';
 import '../../../../../../core/helpers/remote/failures.dart';
 
-abstract class RegisterStates{}
-class RegisterInitialState extends RegisterStates{}
-class RegisterLoadingState extends RegisterStates{}
-class RegisterErrorState extends RegisterStates{
-  Failures failures ;
-  RegisterErrorState({required this.failures});
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'sign_up_states.freezed.dart';
+
+
+
+enum SignUpStateStatus {
+  initial,
+  loading,
+  success,
+  error,
 }
-class RegisterSuccessState extends RegisterStates {
+
+@freezed
+class SignUpState with _$SignUpState {
+  const factory SignUpState({
+    required SignUpStateStatus status,
+    SignUpEntity? responseEntity,
+    Failures? failures,
+  }) = _SignUpState;
+
+  factory SignUpState.initial() => const SignUpState(
+    status: SignUpStateStatus.initial,
+  );
+}
+
+
+abstract class SignUpStates{}
+class SignUpInitialState extends SignUpStates{}
+class SignUpLoadingState extends SignUpStates{}
+class SignUpErrorState extends SignUpStates{
+  Failures failures ;
+  SignUpErrorState({required this.failures});
+}
+class SignUpSuccessState extends SignUpStates {
   SignUpEntity responseEntity ;
-  RegisterSuccessState({required this.responseEntity});
+  SignUpSuccessState({required this.responseEntity});
 }

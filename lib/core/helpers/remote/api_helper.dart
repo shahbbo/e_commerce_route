@@ -6,7 +6,7 @@ import 'failures.dart';
 class ApiHelper {
   static Future<Either<Failures, T>> safeApiCall<T>(Future<Response> Function() request, T Function(dynamic data) fromJson,) async {
     var checkResult = await Connectivity().checkConnectivity();
-    if (checkResult == ConnectivityResult.none) {
+    if (checkResult.contains(ConnectivityResult.none)) {
       return Left(NetworkError(errorMessage: "No Internet Connection"));
     }
     try {
@@ -30,15 +30,33 @@ class ApiHelper {
   static Failures _handleHttpError(Response response) {
     switch (response.statusCode) {
       case 400:
-        return ServerError(errorMessage: "Bad Request: ${response.data}");
+        //Bad Request
+        return ServerError(errorMessage: "${response.data['message']}");
       case 401:
-        return ServerError(errorMessage: "Unauthorized: ${response.data}");
+        //Unauthorized
+        return ServerError(errorMessage: "${response.data['message']}");
       case 403:
-        return ServerError(errorMessage: "Forbidden: ${response.data}");
+        //Forbidden
+        return ServerError(errorMessage: "${response.data['message']}");
       case 404:
-        return ServerError(errorMessage: "Not Found: ${response.data}");
+        //Not Found
+        return ServerError(errorMessage: "${response.data['message']}");
+      case 408:
+        return ServerError(errorMessage: "Request Timeout");
+      case 409:
+        //Conflict
+        return ServerError(errorMessage: "${response.data['message']}");
+      case 422:
+        //Unprocessable Entity
+        return ServerError(errorMessage: "${response.data['message']}");
+      case 429:
+        return ServerError(errorMessage: "Too Many Requests");
       case 500:
         return ServerError(errorMessage: "Internal Server Error");
+      case 503:
+        return ServerError(errorMessage: "Service Unavailable");
+      case 504:
+        return ServerError(errorMessage: "Gateway Timeout");
       default:
         return ServerError(errorMessage: "Unexpected Error: ${response.statusCode}");
     }
@@ -63,12 +81,4 @@ class ApiHelper {
     }
   }
 
-  static Future<Either<Failures, T>> safeApiCallWithInterceptor<T>(Future<Response> Function() apiCall, T Function(dynamic) fromJson,) async {
-    try {
-      var response = await apiCall();
-      return Right(fromJson(response.data));
-    } on DioException catch (e) {
-      return Left(Failures(errorMessage: e.message ?? "Unknown Error"));
-    }
-  }
 }

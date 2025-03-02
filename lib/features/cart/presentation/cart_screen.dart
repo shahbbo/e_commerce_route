@@ -21,7 +21,7 @@ class CartScreen extends StatelessWidget {
     return BlocConsumer<CartScreenCubit, CartStates>(
       bloc: CartScreenCubit.get(context)..getCart(),
       listener: (context, state) {
-        if (state is DeleteItemInCartSuccessState) {
+        if (state is GetCartErrorState) {
           Toasts.success(context, 'Item deleted successfully');
         } else if (state is DeleteItemInCartErrorState) {
           Toasts.error(context,state.failures.errorMessage);

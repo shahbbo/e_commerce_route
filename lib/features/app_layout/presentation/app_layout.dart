@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/color_manager.dart';
+import '../../cart/presentation/cubit/cart_screen_cubit.dart';
 import 'cubit/app_states.dart';
 import 'cubit/app_cubit.dart';
 

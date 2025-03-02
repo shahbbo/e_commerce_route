@@ -54,8 +54,6 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
     either.fold((l) {
       emit(AddToCartErrorState(failures: l));
     }, (response) {
-      numOfCartItems = response.numOfCartItems!.toInt();
-      print('numOfCartItems: $numOfCartItems');
       emit(AddToCartSuccessState(addToCartResponseEntity: response));
     });
   }

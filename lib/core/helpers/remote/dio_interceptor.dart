@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class DioInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    print("🚀 Request to ${options.uri} with headers: ${options.headers}");
+    // print("🚀 Request to ${options.uri} with headers: ${options.headers}");
     handler.next(options);
   }
 
@@ -15,7 +15,7 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    print("❌ Dio Error: ${err.message}");
+    // print("❌ Dio Error: ${err.message}");
 
     final errorMessages = {
       DioExceptionType.connectionTimeout: "Connection Timeout",
@@ -23,7 +23,7 @@ class DioInterceptor extends Interceptor {
       DioExceptionType.receiveTimeout: "Receive Timeout",
       DioExceptionType.cancel: "Request Cancelled",
       DioExceptionType.connectionError: "No Internet Connection",
-      DioExceptionType.badResponse: "Bad Response: ${err.response?.statusCode}",
+      DioExceptionType.badResponse: "Bad Response: ${err.response?.statusCode} - ${err.response?.data}",
     };
     err = err.copyWith(error: errorMessages[err.type] ?? "Unexpected Error");
 

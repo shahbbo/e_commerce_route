@@ -16,9 +16,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl({required this.apiManager});
 
   @override
-  Future<Either<Failures, SignUpResponseDto>> signUp(String name,
-      String email, String password, String rePassword, String phone) async {
-    return ApiHelper.safeApiCallWithInterceptor(
+  Future<Either<Failures, SignUpResponseDto>> signUp(String name, String email,
+      String password, String rePassword, String phone) async {
+    return ApiHelper.safeApiCall(
       () => apiManager.post(EndPoints.register, body: {
         "name": name,
         "email": email,
@@ -33,8 +33,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<Either<Failures, LoginDto>> login(
       String email, String password) async {
-    return ApiHelper.safeApiCallWithInterceptor(
-      () => apiManager.post(EndPoints.login, body: {"email": email, "password": password}),
+    return ApiHelper.safeApiCall(
+      () => apiManager
+          .post(EndPoints.login, body: {"email": email, "password": password}),
       (data) => LoginDto.fromJson(data),
     );
   }

@@ -14,7 +14,7 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   CartRemoteDataSourceImpl({required this.apiManager});
   @override
   Future<Either<Failures, GetCartDto>> getCart() async {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.get(EndPoints.cart),
       (data) => GetCartDto.fromJson(data),
     );
@@ -23,7 +23,7 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   @override
   Future<Either<Failures, GetCartDto>> deleteItemInCart(
       String productId) async {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.delete('${EndPoints.cart}/$productId'),
       (data) => GetCartDto.fromJson(data),
     );
@@ -32,7 +32,7 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   @override
   Future<Either<Failures, GetCartDto>> updateCountInCart(
       String productId, int count) async {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.update('${EndPoints.cart}/$productId', body: {'count': count}),
       (data) => GetCartDto.fromJson(data),
     );

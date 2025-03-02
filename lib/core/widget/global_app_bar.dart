@@ -11,8 +11,10 @@ import '../resources/values_manager.dart';
 import '../routes_manager/routes.dart';
 
 class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
- final bool? automaticallyImplyLeading;
+  final bool? automaticallyImplyLeading;
+
   const GlobalAppBar({super.key, this.automaticallyImplyLeading});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -25,8 +27,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
         height: 30.h,
         width: 30.w,
         colorFilter:
-            const ColorFilter.mode(ColorManager.textColor,
-                BlendMode.srcIn),
+            const ColorFilter.mode(ColorManager.textColor, BlendMode.srcIn),
       ),
       bottom: PreferredSize(
           preferredSize: const Size(AppSize.s100, AppSize.s60),
@@ -74,12 +75,25 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Badge(
                   backgroundColor: ColorManager.primary,
                   alignment: Alignment.topCenter,
-                  label: Text(
-                    CartScreenCubit.get(context).cartResponse.numOfCartItems.toString(),
-                    style: getRegularStyle(
-                        color: Colors.white, fontSize: FontSize.s12),
-                  ),
-                  child: IconButton(onPressed: () =>
+                  label: CartScreenCubit.get(context)
+                              .cartResponse
+                              .numOfCartItems ==
+                          null
+                      ? Text(
+                          CartScreenCubit.get(context)
+                              .cartResponse
+                              .numOfCartItems
+                              .toString(),
+                          style: getRegularStyle(
+                              color: Colors.white, fontSize: FontSize.s12),
+                        )
+                      : Text(
+                          '0',
+                          style: getRegularStyle(
+                              color: Colors.white, fontSize: FontSize.s12),
+                        ),
+                  child: IconButton(
+                      onPressed: () =>
                           Navigator.pushNamed(context, Routes.cartRoute),
                       icon: Icon(
                         Icons.shopping_cart,

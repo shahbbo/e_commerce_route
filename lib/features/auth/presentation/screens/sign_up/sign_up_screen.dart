@@ -24,18 +24,18 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-    return BlocConsumer<RegisterCubit,RegisterStates>(
+    return BlocConsumer<SignUpCubit,SignUpState>(
       listener: (context,state){
-        if(state is RegisterErrorState){
-          Toasts.error(context, state.failures.errorMessage);
-        }else if(state is RegisterSuccessState){
+        if(state.status == SignUpStateStatus.error){
+          Toasts.error(context, state.failures!.errorMessage);
+        }else if(state.status == SignUpStateStatus.success){
           Toasts.success(context, 'Register Successfully.');
-          CacheHelper.saveData(key: 'token', value: state.responseEntity.token);
+          CacheHelper.saveData(key: 'token', value: state.responseEntity!.token);
           Navigator.of(context).pushNamedAndRemoveUntil(Routes.mainRoute, (route) => false);
         }
       },
       builder: (context,state){
-        final cubit = context.read<RegisterCubit>();
+        final cubit = context.read<SignUpCubit>();
         return Scaffold(
           backgroundColor: ColorManager.primary,
           body: SafeArea(

@@ -16,7 +16,7 @@ class WishlistRemoteDataSourceImpl implements WishlistRemoteDataSource {
 
   @override
   Future<Either<Failures, WishListDto>> getWishList() {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
           () => apiManager.get(EndPoints.wishList),
           (data) => WishListDto.fromJson(data),
     );
@@ -24,7 +24,7 @@ class WishlistRemoteDataSourceImpl implements WishlistRemoteDataSource {
 
   @override
   Future<Either<Failures, AddRemoveWishListDto>> addToWishList(String productId) {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
           () => apiManager.post(EndPoints.wishList, body: {'productId': productId}),
           (data) => AddRemoveWishListDto.fromJson(data),
     );
@@ -32,7 +32,7 @@ class WishlistRemoteDataSourceImpl implements WishlistRemoteDataSource {
 
   @override
   Future<Either<Failures, AddRemoveWishListDto>> removeFromWishList(String productId) {
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
           () => apiManager.delete("${EndPoints.wishList}/$productId"),
           (data) => AddRemoveWishListDto.fromJson(data),
     );

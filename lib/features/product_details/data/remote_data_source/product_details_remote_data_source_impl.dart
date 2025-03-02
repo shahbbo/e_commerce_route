@@ -17,7 +17,7 @@ class ProductDetailsRemoteDataSourceImpl implements ProductDetailsRemoteDataSour
 
   @override
   Future<Either<Failures,ProductDetailsDto>> getProductDetails(String productId) async{
-    return ApiHelper.safeApiCallWithInterceptor(
+    return ApiHelper.safeApiCall(
       () => apiManager.get('${EndPoints.products}/$productId'),
       (data) => ProductDetailsDto.fromJson(data),
     );

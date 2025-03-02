@@ -12,5 +12,6 @@ class SignInUseCase {
 
   Future<Either<Failures, SignInEntity>> invoke(String email, String password){
     return authRepository.login(email, password);
+
   }
 }

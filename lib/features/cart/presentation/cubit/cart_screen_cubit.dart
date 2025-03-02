@@ -19,39 +19,69 @@ class CartScreenCubit extends Cubit<CartStates> {
       {required this.getCartUseCase,
       required this.deleteItemInCartUseCase,
       required this.updateCountInCartUseCase})
-      : super(CartInitialState());
-
-  GetCartEntity cartResponse = GetCartEntity();
+      : super(CartStates.initial());
 
   static CartScreenCubit get(context) => BlocProvider.of(context);
 
+  GetCartEntity cartResponse = GetCartEntity();
+
   void getCart() async {
-    emit(GetCartLoadingState());
+    emit(CartStates.getCartLoading());
     var either = await getCartUseCase.invoke();
-    either.fold((l) => emit(GetCartErrorState(failures: l)), (response) {
+    either.fold((l) => emit(CartStates.getCartError(failures: l)), (response) {
       cartResponse = response;
-      emit(GetCartSuccessState(cartResponseEntity: response));
+      emit(CartStates.getCartSuccess(cartResponseEntity: response));
     });
   }
 
   void deleteItemInCart(String productId) async {
-    emit(DeleteItemInCartLoadingState());
+    emit(CartStates.deleteItemInCartLoading());
     var either = await deleteItemInCartUseCase.invoke(productId);
-    either.fold((l) => emit(DeleteItemInCartErrorState(failures: l)),
+    either.fold((l) => emit(CartStates.deleteItemInCartError(failures: l)),
         (response) {
-      emit(GetCartSuccessState(cartResponseEntity: response));
+      emit(CartStates.getCartSuccess(cartResponseEntity: response));
       getCart();
     });
   }
 
   void updateCountInCart(String productId, int count) async {
-    emit(UpdateCountInCartLoadingState());
+    emit(CartStates.updateCountInCartLoading());
     var either = await updateCountInCartUseCase.invoke(productId, count);
     either.fold((l) {
-      emit(UpdateCountInCartErrorState(failures: l));
+      emit(CartStates.updateCountInCartError(failures: l));
     }, (response) {
-      emit(UpdateCountInCartSuccessState(cartResponseEntity: response));
+      emit(CartStates.updateCountInCartSuccess(cartResponseEntity: response));
       getCart();
     });
   }
+
+// void getCart() async {
+//   emit(GetCartLoadingState());
+//   var either = await getCartUseCase.invoke();
+//   either.fold((l) => emit(GetCartErrorState(failures: l)), (response) {
+//     cartResponse = response;
+//     emit(GetCartSuccessState(cartResponseEntity: response));
+//   });
+// }
+//
+// void deleteItemInCart(String productId) async {
+//   emit(DeleteItemInCartLoadingState());
+//   var either = await deleteItemInCartUseCase.invoke(productId);
+//   either.fold((l) => emit(DeleteItemInCartErrorState(failures: l)),
+//       (response) {
+//     emit(GetCartSuccessState(cartResponseEntity: response));
+//     getCart();
+//   });
+// }
+//
+// void updateCountInCart(String productId, int count) async {
+//   emit(UpdateCountInCartLoadingState());
+//   var either = await updateCountInCartUseCase.invoke(productId, count);
+//   either.fold((l) {
+//     emit(UpdateCountInCartErrorState(failures: l));
+//   }, (response) {
+//     emit(UpdateCountInCartSuccessState(cartResponseEntity: response));
+//     getCart();
+//   });
+// }
 }

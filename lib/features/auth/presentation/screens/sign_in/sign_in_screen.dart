@@ -23,13 +23,13 @@ class SignInScreen extends StatelessWidget {
 
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-    return BlocConsumer<SignInCubit, SignInStates>(
+    return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
-        if (state is LoginErrorState) {
-          Toasts.error(context, state.failures.errorMessage);
-        } else if (state is LoginSuccessState) {
+        if (state.status == SignInStateStatus.error) {
+          Toasts.error(context, state.failures!.errorMessage);
+        } else if (state.status == SignInStateStatus.success) {
           Toasts.success(context, 'Login Successfully');
-          CacheHelper.saveData(key: 'token', value: state.responseEntity.token);
+          CacheHelper.saveData(key: 'token', value: state.responseEntity!.token);
           Navigator.of(context).pushNamedAndRemoveUntil(Routes.mainRoute, (route) => false);
         }
       },
