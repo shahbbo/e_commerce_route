@@ -7,7 +7,33 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'cart_states.freezed.dart';
 
+enum CartStatus {
+  initial,
+  getCartLoading,
+  getCartError,
+  getCartSuccess,
+  deleteItemInCartLoading,
+  deleteItemInCartError,
+  deleteItemInCartSuccess,
+  updateCountInCartLoading,
+  updateCountInCartError,
+  updateCountInCartSuccess,
+}
+
 @freezed
+class CartState with _$CartState {
+  const factory CartState({
+    required CartStatus status,
+    GetCartEntity? cartResponseEntity,
+    Failures? failures,
+  }) = _CartState;
+
+  factory CartState.initial() => const CartState(status: CartStatus.initial);
+}
+
+
+
+/*@freezed
 class CartStates with _$CartStates {
   const factory CartStates.initial() = CartInitialState;
 
@@ -28,10 +54,7 @@ class CartStates with _$CartStates {
   const factory CartStates.updateCountInCartError({required Failures failures}) = UpdateCountInCartErrorState;
 
   const factory CartStates.updateCountInCartSuccess({required GetCartEntity cartResponseEntity}) = UpdateCountInCartSuccessState;
-}
-
-
-
+}*/
 
 // abstract class CartStates {}
 //

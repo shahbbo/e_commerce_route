@@ -18,23 +18,25 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CartScreenCubit, CartStates>(
+    return BlocConsumer<CartScreenCubit, CartState>(
       bloc: CartScreenCubit.get(context)..getCart(),
       listener: (context, state) {
-        if (state is GetCartErrorState) {
-          Toasts.success(context, 'Item deleted successfully');
-        } else if (state is DeleteItemInCartErrorState) {
-          Toasts.error(context,state.failures.errorMessage);
-        } else if (state is UpdateCountInCartSuccessState) {
-          Toasts.success(context, 'Item updated successfully');
-        } else if (state is UpdateCountInCartErrorState) {
-          Toasts.error(context,state.failures.errorMessage);
+        if (state.status == CartStatus.getCartError) {
+          Toasts.success(context, 'Error while getting cart');
+        } else if (state.status == CartStatus.deleteItemInCartError) {
+          Toasts.error(context,state.failures!.errorMessage);
+        } else if (state.status == CartStatus.updateCountInCartSuccess) {
+          Toasts.success(context, 'Item count updated successfully');
+        } else if (state.status == CartStatus.updateCountInCartError) {
+          Toasts.error(context,state.failures!.errorMessage);
         }
       },
       builder: (context, state) {
         final cubit = CartScreenCubit.get(context);
         return LoadingOverlay(
-          isLoading: state is GetCartLoadingState || state is DeleteItemInCartLoadingState || state is UpdateCountInCartLoadingState,
+          isLoading: state.status == CartStatus.getCartLoading ||
+              state.status == CartStatus.deleteItemInCartLoading ||
+              state.status == CartStatus.updateCountInCartLoading,
           child: Scaffold(
             appBar: AppBar(
               forceMaterialTransparency: true,
