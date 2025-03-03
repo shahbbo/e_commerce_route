@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeScreenCubit, HomeTabStates>(
+    return BlocConsumer<HomeScreenCubit, HomeScreenStates>(
       bloc: HomeScreenCubit.get(context)..getAllCategories()..getAllBrands(),
       listener: (context, state) {
         if (state is HomeCategoriesErrorState) {

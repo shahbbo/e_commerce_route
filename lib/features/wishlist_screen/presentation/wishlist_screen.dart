@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../../core/widget/global_app_bar.dart';
 import '../../../core/resources/color_manager.dart';
-import '../../products_screen/presentation/cubit/product_screen_states.dart';
+import 'cubit/wish_list_state.dart';
 import 'widgets/wishlist_item.dart';
 
 class WishListScreen extends StatelessWidget {
@@ -21,10 +21,10 @@ class WishListScreen extends StatelessWidget {
       builder: (context, state) {
         final cubit = WishListScreenCubit.get(context);
         return LoadingOverlay(
-          isLoading: state is WishListLoadingState || state is AddRemoveWishListLoadingState,
+          isLoading: state is GetWishListLoading || state is AddRemoveWishListLoading,
           child: Scaffold(
             appBar: const GlobalAppBar(),
-            body: state is WishListLoadingState
+            body: state is GetWishListLoading
                 ? Center(
                     child: CircularProgressIndicator(
                       color: ColorManager.primaryDark,

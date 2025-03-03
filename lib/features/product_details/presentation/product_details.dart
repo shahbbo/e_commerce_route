@@ -5,15 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/styles_manager.dart';
-import '../../../../core/widget/custom_button.dart';
-import '../../domain/entities/product_details_entity.dart';
-import '../cubit/product_details_cubit.dart';
-import '../widgets/image_slider.dart';
-import '../widgets/product_description.dart';
-import '../widgets/product_label.dart';
-import '../widgets/product_rating.dart';
+import '../../../core/resources/color_manager.dart';
+import '../../../core/resources/styles_manager.dart';
+import '../../../core/widget/custom_button.dart';
+import '../domain/entities/product_details_entity.dart';
+import 'cubit/product_details_cubit.dart';
+import 'cubit/product_details_state.dart';
+import 'widgets/image_slider.dart';
+import 'widgets/product_description.dart';
+import 'widgets/product_label.dart';
+import 'widgets/product_rating.dart';
 
 class ProductDetails extends StatelessWidget {
   final String productId;
@@ -56,7 +57,7 @@ class ProductDetails extends StatelessWidget {
                   )),
             ],
           ),
-          body: state is ProductDetailsLoading
+          body: state.status == ProductDetailsStateEnum.loading
               ? Center(
                   child: CircularProgressIndicator(
                     color: ColorManager.primary,

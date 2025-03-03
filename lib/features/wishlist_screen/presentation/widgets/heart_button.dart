@@ -2,8 +2,10 @@ import 'package:e_commerce_route/core/widget/toasts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../products_screen/presentation/cubit/product_screen_states.dart';
 import '../cubit/wish_list_cubit.dart';
 import '../../../../core/resources/color_manager.dart';
+import '../cubit/wish_list_state.dart';
 
 class HeartButton extends StatelessWidget {
 
@@ -15,10 +17,10 @@ class HeartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<WishListScreenCubit, WishListState>(
       listener: (context, state) {
-        if (state is AddRemoveWishListSuccessState) {
-          Toasts.success(context, state.addToWishListResponseEntity.message!);
-        } else if (state is AddRemoveWishListErrorState) {
-          Toasts.error(context, state.failures.errorMessage);
+        if (state is AddRemoveWishListSuccess) {
+          Toasts.success(context,state.addToWishListEntity.message ?? 'Added to wish list');
+        } else if (state is AddRemoveWishListError) {
+          Toasts.error(context,state.failures.errorMessage);
         }
       },
       builder: (context, state) {

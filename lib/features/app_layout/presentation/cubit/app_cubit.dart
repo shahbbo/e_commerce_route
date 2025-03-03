@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../home_screen/presentation/home_screen.dart';
-import '../../../products_screen/presentation/screens/products_screen.dart';
+import '../../../products_screen/presentation/products_screen.dart';
 import '../../../profile_screen/presentation/profile_tab.dart';
 import 'app_states.dart';
 

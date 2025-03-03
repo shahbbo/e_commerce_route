@@ -22,7 +22,7 @@ class AddToCartButton extends StatelessWidget {
       listener: (context, state) {
         if (state is AddToCartSuccessState) {
           Toasts.success(
-            context, state.addToCartResponseEntity.message ?? '',
+            context, state.addToCartEntity.message ?? '',
           );
         } else if (state is AddToCartErrorState) {
           Toasts.error(context, state.failures.errorMessage);

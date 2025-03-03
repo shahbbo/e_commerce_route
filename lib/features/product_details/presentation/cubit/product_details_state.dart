@@ -1,23 +1,41 @@
-part of 'product_details_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-sealed class ProductDetailsState {}
-
-final class ProductDetailsInitial extends ProductDetailsState {}
-
-
-final class ProductDetailsLoading extends ProductDetailsState {}
+import '../../../../core/helpers/remote/failures.dart';
+import '../../domain/entities/product_details_entity.dart';
+part 'product_details_state.freezed.dart';
 
 
-final class ProductDetailsLoaded extends ProductDetailsState {
-  final ProductDetailsEntity productDetailsResponseEntity;
+enum ProductDetailsStateEnum { initial, loading, loaded, error }
 
-  ProductDetailsLoaded(this.productDetailsResponseEntity);
+@freezed
+class ProductDetailsState with _$ProductDetailsState {
+  const factory ProductDetailsState({
+    required ProductDetailsStateEnum status,
+    ProductDetailsEntity? productDetailsEntity,
+    Failures? failures,
+  }) = _ProductDetailsState;
+
+  factory ProductDetailsState.initial() => const ProductDetailsState(status: ProductDetailsStateEnum.initial);
 }
 
-
-final class ProductDetailsError extends ProductDetailsState {
-  final Failures failures;
-
-  ProductDetailsError(this.failures);
-}
+// @immutable
+// sealed class ProductDetailsState {}
+//
+// final class ProductDetailsInitial extends ProductDetailsState {}
+//
+//
+// final class ProductDetailsLoading extends ProductDetailsState {}
+//
+//
+// final class ProductDetailsLoaded extends ProductDetailsState {
+//   final ProductDetailsEntity productDetailsResponseEntity;
+//
+//   ProductDetailsLoaded(this.productDetailsResponseEntity);
+// }
+//
+//
+// final class ProductDetailsError extends ProductDetailsState {
+//   final Failures failures;
+//
+//   ProductDetailsError(this.failures);
+// }

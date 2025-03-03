@@ -16,11 +16,11 @@ class ProductItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ProductScreenCubit, ProductScreenStates>(
       listener: (context, state) {
-        if (state is AddWishListSuccessState) {
+        if (state is AddToCartSuccessState) {
           Toasts.success(
-            context, state.addToWishListResponseEntity.message ?? '',
+            context, state.addToCartEntity.message ?? 'Added to cart',
           );
-        } else if (state is AddWishListErrorState) {
+        } else if (state is AddToCartErrorState) {
           Toasts.error(context, state.failures.errorMessage);
         }
       },

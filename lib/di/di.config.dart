@@ -21,7 +21,8 @@ import '../features/auth/data/repo/auth_repository_impl.dart' as _i401;
 import '../features/auth/domain/repo/auth_repository.dart' as _i981;
 import '../features/auth/domain/use_case/login_use_case.dart' as _i876;
 import '../features/auth/domain/use_case/signUp_use_case.dart' as _i855;
-import '../features/auth/presentation/screens/sign_in/cubit/sign_in_cubit.dart';
+import '../features/auth/presentation/screens/sign_in/cubit/sign_in_cubit.dart'
+    as _i203;
 import '../features/auth/presentation/screens/sign_up/cubit/sign_up_cubit.dart'
     as _i134;
 import '../features/cart/data/remote_data_source/cart_remote_data_source.dart'
@@ -175,8 +176,8 @@ extension GetItInjectableX on _i174.GetIt {
         productsRepository: gh<_i255.ProductsRepository>()));
     gh.factory<_i107.GetAllProductUseCase>(() => _i107.GetAllProductUseCase(
         productsRepository: gh<_i255.ProductsRepository>()));
-    gh.factory<SignInCubit>(
-        () => SignInCubit(signInUseCase: gh<_i876.SignInUseCase>()));
+    gh.factory<_i203.SignInCubit>(
+        () => _i203.SignInCubit(signInUseCase: gh<_i876.SignInUseCase>()));
     gh.factory<_i666.ProductDetailsCubit>(() => _i666.ProductDetailsCubit(
         productDetailsUseCase: gh<_i487.ProductDetailsUseCase>()));
     gh.factory<_i411.ProductScreenCubit>(() => _i411.ProductScreenCubit(

@@ -2,13 +2,13 @@ import 'package:e_commerce_route/core/widget/loading_overlay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/resources/color_manager.dart';
-import '../../../../core/resources/values_manager.dart';
-import '../../../../core/widget/global_app_bar.dart';
-import '../../../product_details/presentation/screen/product_details.dart';
-import '../cubit/product_screen_states.dart';
-import '../cubit/product_screen_cubit.dart';
-import '../widgets/custom_product_widget.dart';
+import '../../../core/resources/color_manager.dart';
+import '../../../core/resources/values_manager.dart';
+import '../../../core/widget/global_app_bar.dart';
+import '../../product_details/presentation/product_details.dart';
+import 'cubit/product_screen_states.dart';
+import 'cubit/product_screen_cubit.dart';
+import 'widgets/custom_product_widget.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -19,10 +19,10 @@ class ProductsScreen extends StatelessWidget {
       bloc: ProductScreenCubit.get(context)..getAllProducts()..getWishList(),
       builder: (context, state) {
         return LoadingOverlay(
-          isLoading: state is ProductLoadingState || state is WishListLoadingState || state is AddWishListLoadingState || state is AddToCartLoadingState,
+          isLoading: state is ProductsLoadingState || state is AddToCartLoadingState || state is WishListLoadingState,
           child: Scaffold(
             appBar: GlobalAppBar(),
-            body: state is ProductLoadingState
+            body: state is ProductsLoadingState
                 ? Center(
                     child: CircularProgressIndicator(
                       color: ColorManager.primaryDark,

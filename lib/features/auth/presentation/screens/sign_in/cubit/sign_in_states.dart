@@ -21,9 +21,7 @@ class SignInState with _$SignInState {
     Failures? failures,
   }) = _LoginState;
 
-  factory SignInState.initial() => const SignInState(
-    status: SignInStateStatus.initial,
-  );
+  factory SignInState.initial() => const SignInState(status: SignInStateStatus.initial,);
 }
 
 
