@@ -8,13 +8,13 @@ import '../../domain/use_case/get_all_categories_use_case.dart';
 import 'home_tab_states.dart';
 
 @injectable
-class HomeScreenCubit extends Cubit<HomeScreenStates> {
+class HomeScreenCubit extends Cubit<HomeTabState> {
   GetAllCategoriesUseCase getAllCategoriesUseCase;
   GetAllBrandsUseCase getAllBrandsUseCase ;
 
   HomeScreenCubit({required this.getAllCategoriesUseCase,
   required this.getAllBrandsUseCase})
-      : super(HomeScreenStates.initial());
+      : super(HomeTabState.initial());
 
   List<CategoryOrBrandEntity> categoriesList = [];
   List<CategoryOrBrandEntity> brandsList = [];
@@ -27,7 +27,31 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   static HomeScreenCubit get(context)=> BlocProvider.of(context);
 
 
-  void getAllCategories() async {
+  void getAllCategoriesAndBrands() async {
+    emit(state.copyWith(status: HomeTabStatus.loading));
+    var either = await getAllCategoriesUseCase.invoke();
+    either.fold((error) {
+      emit(state.copyWith(status: HomeTabStatus.getCategoriesError, failures: error));
+    }, (response) {
+      categoriesList = response.data!;
+      if(brandsList.isNotEmpty) {
+        emit(state.copyWith(status: HomeTabStatus.getCategoriesSuccess, categoryResponseEntity: response));
+      }
+    });
+    var either2 = await getAllBrandsUseCase.invoke();
+    either2.fold((error) {
+      emit(state.copyWith(status: HomeTabStatus.getBrandsError, failures: error));
+    }, (response) {
+      brandsList = response.data!;
+      if(categoriesList.isNotEmpty) {
+        emit(state.copyWith(status: HomeTabStatus.getBrandsSuccess, brandsResponseEntity: response));
+      }
+    });
+  }
+
+
+
+ /* void getAllCategories() async {
     emit(HomeScreenStates.getCategoriesLoading());
     var either = await getAllCategoriesUseCase.invoke();
     either.fold((l) {
@@ -53,7 +77,7 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     }
     );
   }
-
+*/
   // void getAllCategories() async {
   //   emit(HomeCategoriesLoadingState());
   //   var either = await getAllCategoriesUseCase.invoke();

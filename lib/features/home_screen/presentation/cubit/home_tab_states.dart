@@ -6,23 +6,46 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'home_tab_states.freezed.dart';
 
-@freezed
-class HomeScreenStates with _$HomeScreenStates {
-  const factory HomeScreenStates.initial() = HomeTabInitialState;
-
-  const factory HomeScreenStates.getCategoriesLoading() = HomeCategoriesLoadingState;
-
-  const factory HomeScreenStates.getCategoriesError({required Failures failures}) = HomeCategoriesErrorState;
-
-  const factory HomeScreenStates.getCategoriesSuccess({required CategoryOrBrandResponseEntity categoryResponseEntity}) = HomeCategoriesSuccessState;
-
-  const factory HomeScreenStates.getBrandsLoading() = HomeBrandsLoadingState;
-
-  const factory HomeScreenStates.getBrandsError({required Failures failures}) = HomeBrandsErrorState;
-
-  const factory HomeScreenStates.getBrandsSuccess({required CategoryOrBrandResponseEntity brandsResponseEntity}) = HomeBrandsSuccessState;
-
+enum HomeTabStatus {
+  initial,
+  loading,
+  getCategoriesError,
+  getCategoriesSuccess,
+  getBrandsError,
+  getBrandsSuccess,
 }
+
+
+@freezed
+class HomeTabState with _$HomeTabState {
+  const factory HomeTabState({
+    required HomeTabStatus status,
+    CategoryOrBrandResponseEntity? categoryResponseEntity,
+    CategoryOrBrandResponseEntity? brandsResponseEntity,
+    Failures? failures,
+  }) = _HomeTabState;
+
+  factory HomeTabState.initial() => const HomeTabState(status: HomeTabStatus.initial);
+}
+
+
+// @freezed
+// class HomeScreenStates with _$HomeScreenStates {
+//   const factory HomeScreenStates.initial() = HomeTabInitialState;
+//
+//   const factory HomeScreenStates.getCategoriesLoading() = HomeCategoriesLoadingState;
+//
+//   const factory HomeScreenStates.getCategoriesError({required Failures failures}) = HomeCategoriesErrorState;
+//
+//   const factory HomeScreenStates.getCategoriesSuccess({required CategoryOrBrandResponseEntity categoryResponseEntity}) = HomeCategoriesSuccessState;
+//
+//   const factory HomeScreenStates.getBrandsLoading() = HomeBrandsLoadingState;
+//
+//   const factory HomeScreenStates.getBrandsError({required Failures failures}) = HomeBrandsErrorState;
+//
+//   const factory HomeScreenStates.getBrandsSuccess({required CategoryOrBrandResponseEntity brandsResponseEntity}) = HomeBrandsSuccessState;
+//
+// }
 
 
 // abstract class HomeTabStates{}

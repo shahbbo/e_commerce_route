@@ -16,11 +16,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeScreenCubit, HomeScreenStates>(
-      bloc: HomeScreenCubit.get(context)..getAllCategories()..getAllBrands(),
+    return BlocConsumer<HomeScreenCubit, HomeTabState>(
+      bloc: HomeScreenCubit.get(context)..getAllCategoriesAndBrands(),
       listener: (context, state) {
-        if (state is HomeCategoriesErrorState) {
-          Toasts.error(context,state.failures.errorMessage);
+        if (state.status == HomeTabStatus.getCategoriesError) {
+          Toasts.error(context,state.failures!.errorMessage);
         }
       },
       builder: (context, state) {
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 CustomSectionBar(
                     sectionNname: 'Categories',
                     function: () {}),
-                state is HomeCategoriesLoadingState
+                state.status == HomeTabStatus.loading
                     ? Center(
                         child: CircularProgressIndicator(
                           color: ColorManager.primaryDark,
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                 SizedBox(height: 12.h),
                 CustomSectionBar(sectionNname: 'Brands', function: () {}),
-                state is HomeBrandsLoadingState
+                state.status == HomeTabStatus.loading
                     ? Center(
                         child: CircularProgressIndicator(
                           color: ColorManager.primaryDark,

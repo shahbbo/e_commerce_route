@@ -10,7 +10,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   final ProductDetailsUseCase productDetailsUseCase;
 
   ProductDetailsCubit({required this.productDetailsUseCase})
-      : super(ProductDetailsState(status: ProductDetailsStateEnum.initial));
+      : super(ProductDetailsState.initial());
 
   static ProductDetailsCubit get(context) => BlocProvider.of(context);
 

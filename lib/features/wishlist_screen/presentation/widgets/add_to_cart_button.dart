@@ -20,12 +20,12 @@ class AddToCartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ProductScreenCubit, ProductScreenStates>(
       listener: (context, state) {
-        if (state is AddToCartSuccessState) {
+        if (state.status == ProductScreenStatus.addToCartSuccess) {
           Toasts.success(
-            context, state.addToCartEntity.message ?? '',
+            context, state.addToCartEntity!.message ?? '',
           );
-        } else if (state is AddToCartErrorState) {
-          Toasts.error(context, state.failures.errorMessage);
+        } else if (state.status == ProductScreenStatus.addToCartError) {
+          Toasts.error(context, state.failures!.errorMessage);
         }
       },
       builder: (context, state) {

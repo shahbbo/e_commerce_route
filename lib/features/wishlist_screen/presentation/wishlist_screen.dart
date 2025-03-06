@@ -21,10 +21,11 @@ class WishListScreen extends StatelessWidget {
       builder: (context, state) {
         final cubit = WishListScreenCubit.get(context);
         return LoadingOverlay(
-          isLoading: state is GetWishListLoading || state is AddRemoveWishListLoading,
+          isLoading: state.status == WishListStatus.getWishListLoading ||
+              state.status == WishListStatus.addRemoveWishListLoading,
           child: Scaffold(
             appBar: const GlobalAppBar(),
-            body: state is GetWishListLoading
+            body: state.status == WishListStatus.getWishListLoading
                 ? Center(
                     child: CircularProgressIndicator(
                       color: ColorManager.primaryDark,

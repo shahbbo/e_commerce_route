@@ -10,6 +10,41 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product_screen_states.freezed.dart';
 
 
+enum ProductScreenStatus {
+  initial,
+  productsLoading,
+  productsError,
+  productsSuccess,
+  addToCartLoading,
+  addToCartError,
+  addToCartSuccess,
+  wishListLoading,
+  wishListError,
+  wishListSuccess,
+  addRemoveWishListLoading,
+  addRemoveWishListError,
+  addRemoveWishListSuccess,
+}
+
+
+@freezed
+class ProductScreenStates with _$ProductScreenStates {
+  const factory ProductScreenStates({
+    required ProductScreenStatus status,
+    ProductREntity? productEntity,
+    AddToCartEntity? addToCartEntity,
+    WishListEntity? wishListEntity,
+    AddRemoveWishListEntity? addRemoveToWishListEntity,
+    Failures? failures,
+  }) = _ProductScreenStates;
+
+  factory ProductScreenStates.initial() => const ProductScreenStates(status: ProductScreenStatus.initial);
+}
+
+
+
+
+/*
 @freezed
 class ProductScreenStates with _$ProductScreenStates {
   const factory ProductScreenStates.productInitialState() = ProductInitialState;
@@ -26,6 +61,7 @@ class ProductScreenStates with _$ProductScreenStates {
   const factory ProductScreenStates.addRemoveWishListErrorState({required Failures failures}) = AddRemoveWishListErrorState;
   const factory ProductScreenStates.addRemoveWishListSuccessState({required AddRemoveWishListEntity addRemoveToWishListEntity}) = AddRemoveWishListSuccessState;
 }
+*/
 
 
 // abstract class ProductScreenStates {}

@@ -6,7 +6,30 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'wish_list_state.freezed.dart';
 
+enum WishListStatus {
+  initial,
+  getWishListLoading,
+  getWishListSuccess,
+  getWishListError,
+  addRemoveWishListLoading,
+  addRemoveWishListSuccess,
+  addRemoveWishListError,
+}
 
+@freezed
+class WishListState with _$WishListState {
+  const factory WishListState({
+    required WishListStatus status,
+    WishListEntity? wishListEntity,
+    AddRemoveWishListEntity? addToWishListEntity,
+    Failures? failures,
+  }) = _WishListState;
+
+  factory WishListState.initial() => const WishListState(status: WishListStatus.initial);
+}
+
+
+/*
 @freezed
 class WishListState with _$WishListState {
   const factory WishListState.initial() = Initial;
@@ -17,6 +40,7 @@ class WishListState with _$WishListState {
   const factory WishListState.addRemoveWishListSuccess({required AddRemoveWishListEntity addToWishListEntity}) = AddRemoveWishListSuccess;
   const factory WishListState.addRemoveWishListError({required Failures failures}) = AddRemoveWishListError;
 }
+*/
 
 
 // sealed class WishListState {}

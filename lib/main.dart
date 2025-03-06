@@ -27,7 +27,7 @@ void main() async{
         BlocProvider(create: (context) => AppCubit()),
         BlocProvider(create: (context) => getIt<SignInCubit>()),
         BlocProvider(create: (context) => getIt<SignUpCubit>()),
-        BlocProvider(create: (context) => getIt<HomeScreenCubit>()..getAllCategories()..getAllBrands() , lazy: false),
+        BlocProvider(create: (context) => getIt<HomeScreenCubit>()..getAllCategoriesAndBrands() , lazy: false),
         BlocProvider(create: (context) => getIt<ProductScreenCubit>()..getAllProducts()..getWishList(), lazy: false),
         BlocProvider(create: (context) => getIt<CartScreenCubit>()..getCart(), lazy: false),
         BlocProvider(create: (context) => getIt<WishListScreenCubit>()..getWishList(), lazy: false),

@@ -24,7 +24,7 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
       required this.addToWishlistUseCase,
       required this.removeFromWishlistUseCase,
       required this.getWishlistUseCase})
-      : super(ProductScreenStates.productInitialState());
+      : super(ProductScreenStates.initial());
 
   List<ProductEntity>? productsList = [];
   int numOfCartItems = 0;
@@ -32,14 +32,16 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   static ProductScreenCubit get(context) => BlocProvider.of(context);
 
   void getAllProducts() async {
-    emit(ProductScreenStates.productsLoadingState());
+    emit(ProductScreenStates(status: ProductScreenStatus.productsLoading));
     var either = await getAllProductUseCase.invoke();
     either.fold((l) {
-      emit(ProductScreenStates.productsErrorState(failures: l));
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.productsError, failures: l));
     }, (response) {
       productsList = response.data;
-      emit(ProductScreenStates.productsSuccessState(
-          productResponseEntity: response));
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.productsSuccess,
+          productEntity: response));
     });
   }
 
@@ -55,13 +57,14 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   }*/
 
   void addToCart(String productId) async {
-    emit(ProductScreenStates.addToCartLoadingState());
+    emit(ProductScreenStates(status: ProductScreenStatus.addToCartLoading));
     var either = await addToCartUseCase.invoke(productId);
     either.fold((l) {
-      emit(ProductScreenStates.addToCartErrorState(failures: l));
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.addToCartError, failures: l));
     }, (response) {
       emit(
-          ProductScreenStates.addToCartSuccessState(addToCartEntity: response));
+          ProductScreenStates(status: ProductScreenStatus.addToCartSuccess));
     });
   }
 
@@ -80,13 +83,16 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   List<DataEntity> wishListDataEntity = [];
 
   void getWishList() async {
-    emit(ProductScreenStates.wishListLoadingState());
+    emit(ProductScreenStates(status: ProductScreenStatus.wishListLoading));
     var either = await getWishlistUseCase.invoke();
     either.fold((l) {
-      emit(ProductScreenStates.wishListErrorState(failures: l));
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.wishListError, failures: l));
     }, (response) {
       wishListDataEntity = response.data!;
-      emit(ProductScreenStates.wishListSuccessState(wishListEntity: response));
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.wishListSuccess,
+          wishListEntity: response));
     });
   }
 
@@ -108,13 +114,15 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   }
 
   void addToWishList(String productId) async {
-    emit(ProductScreenStates.addRemoveWishListLoadingState());
+    emit(ProductScreenStates(status: ProductScreenStatus.addRemoveWishListLoading));
     var either = await addToWishlistUseCase.invoke(productId);
     either.fold((l) {
-      emit(ProductScreenStates.addRemoveWishListErrorState(failures: l));
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.addRemoveWishListError, failures: l));
     }, (response) {
       getWishList();
-      emit(ProductScreenStates.addRemoveWishListSuccessState(
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.addRemoveWishListSuccess,
           addRemoveToWishListEntity: response));
     });
   }
@@ -131,13 +139,15 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   }*/
 
   void removeFromWishList(String productId) async {
-    emit(ProductScreenStates.addRemoveWishListLoadingState());
+    emit(ProductScreenStates(status: ProductScreenStatus.addRemoveWishListLoading));
     var either = await removeFromWishlistUseCase.invoke(productId);
     either.fold((l) {
-      emit(ProductScreenStates.addRemoveWishListErrorState(failures: l));
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.addRemoveWishListError, failures: l));
     }, (response) {
       getWishList();
-      emit(ProductScreenStates.addRemoveWishListSuccessState(
+      emit(ProductScreenStates(
+          status: ProductScreenStatus.addRemoveWishListSuccess,
           addRemoveToWishListEntity: response));
     });
   }

@@ -2,8 +2,6 @@ import 'package:e_commerce_route/features/wishlist_screen/presentation/cubit/wis
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/helpers/remote/failures.dart';
-import '../../domain/entities/add_remove_wishList_entity.dart';
 import '../../domain/entities/wishList_entity.dart';
 import '../../domain/use-cases/add_to_wishlist_use_case.dart';
 import '../../domain/use-cases/get_wishlist_use_case.dart';
@@ -25,35 +23,35 @@ class WishListScreenCubit extends Cubit<WishListState> {
   List<DataEntity> wishList = [];
 
   void getWishList() async {
-    emit(WishListState.getWishListLoading());
+    emit(WishListState(status: WishListStatus.getWishListLoading));
     var either = await getWishlistUseCase.invoke();
     either.fold((l) {
-      emit(WishListState.getWishListError(failures: l));
+      emit(WishListState(status: WishListStatus.getWishListError, failures: l));
     }, (response) {
       wishList = response.data!;
-      emit(WishListState.getWishListSuccess(wishListEntity: response));
+      emit(WishListState(status: WishListStatus.getWishListSuccess, wishListEntity: response));
     });
   }
 
   void addToWishList(String productId) async {
-    emit(WishListState.addRemoveWishListLoading());
+    emit(WishListState(status: WishListStatus.addRemoveWishListLoading));
     var either = await addToWishlistUseCase.invoke(productId);
     either.fold((l) {
-      emit(WishListState.addRemoveWishListError(failures: l));
+      emit(WishListState(status: WishListStatus.addRemoveWishListError, failures: l));
     }, (response) {
       getWishList();
-      emit(WishListState.addRemoveWishListSuccess(addToWishListEntity: response));
+      emit(WishListState(status: WishListStatus.addRemoveWishListSuccess, addToWishListEntity: response));
     });
   }
 
   void removeFromWishList(String productId) async {
-    emit(WishListState.addRemoveWishListLoading());
+    emit(WishListState(status: WishListStatus.addRemoveWishListLoading));
     var either = await removeFromWishlistUseCase.invoke(productId);
     either.fold((l) {
-      emit(WishListState.addRemoveWishListError(failures: l));
+      emit(WishListState(status: WishListStatus.addRemoveWishListError, failures: l));
     }, (response) {
       getWishList();
-      emit(WishListState.addRemoveWishListSuccess(addToWishListEntity: response));
+      emit(WishListState(status: WishListStatus.addRemoveWishListSuccess, addToWishListEntity: response));
     });
   }
 

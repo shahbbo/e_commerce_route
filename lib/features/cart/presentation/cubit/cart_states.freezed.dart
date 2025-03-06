@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartState {
-  CartStatus get status =>
-      throw _privateConstructorUsedError; // غيرنا الاسم هنا إلى CartStatus
+  CartStatus get status => throw _privateConstructorUsedError;
   GetCartEntity? get cartResponseEntity => throw _privateConstructorUsedError;
   Failures? get failures => throw _privateConstructorUsedError;
 
@@ -131,7 +130,6 @@ class _$CartStateImpl implements _CartState {
 
   @override
   final CartStatus status;
-// غيرنا الاسم هنا إلى CartStatus
   @override
   final GetCartEntity? cartResponseEntity;
   @override
@@ -174,7 +172,7 @@ abstract class _CartState implements CartState {
       final Failures? failures}) = _$CartStateImpl;
 
   @override
-  CartStatus get status; // غيرنا الاسم هنا إلى CartStatus
+  CartStatus get status;
   @override
   GetCartEntity? get cartResponseEntity;
   @override

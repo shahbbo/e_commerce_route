@@ -19,10 +19,13 @@ class ProductsScreen extends StatelessWidget {
       bloc: ProductScreenCubit.get(context)..getAllProducts()..getWishList(),
       builder: (context, state) {
         return LoadingOverlay(
-          isLoading: state is ProductsLoadingState || state is AddToCartLoadingState || state is WishListLoadingState,
+          isLoading: state.status == ProductScreenStatus.productsLoading ||
+              state.status == ProductScreenStatus.addToCartLoading ||
+              state.status == ProductScreenStatus.wishListLoading ||
+              state.status == ProductScreenStatus.addRemoveWishListLoading,
           child: Scaffold(
             appBar: GlobalAppBar(),
-            body: state is ProductsLoadingState
+            body: state.status == ProductScreenStatus.productsLoading
                 ? Center(
                     child: CircularProgressIndicator(
                       color: ColorManager.primaryDark,

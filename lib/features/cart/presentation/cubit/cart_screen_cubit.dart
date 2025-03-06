@@ -19,7 +19,7 @@ class CartScreenCubit extends Cubit<CartState> {
       {required this.getCartUseCase,
       required this.deleteItemInCartUseCase,
       required this.updateCountInCartUseCase})
-      : super(CartState(status: CartStatus.initial));
+      : super(CartState.initial());
 
   static CartScreenCubit get(context) => BlocProvider.of(context);
 
