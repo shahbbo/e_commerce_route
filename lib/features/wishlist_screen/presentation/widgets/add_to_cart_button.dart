@@ -42,7 +42,7 @@ class AddToCartButton extends StatelessWidget {
               onPressed: () {
                 cubit.addToCart(id);
               },
-              child: Text("Add to Cart",
+              child: Text('Add to Cart',
                   style: getRegularStyle(
                     color: ColorManager.white,
                     fontSize: AppSize.s14.sp,

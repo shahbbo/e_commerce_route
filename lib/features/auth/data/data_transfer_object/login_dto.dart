@@ -1,4 +1,4 @@
-import '../../domain/entities/signIn_entity.dart';
+import '../../domain/entities/signin_entity.dart';
 
 class LoginDto extends SignInEntity {
   LoginDto({

@@ -1,8 +1,8 @@
-import 'package:e_commerce_route/features/cart/presentation/cubit/cart_screen_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../features/cart/presentation/cubit/cart_screen_cubit.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';
@@ -47,26 +47,26 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
                       focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10000),
                           borderSide: BorderSide(
-                              width: AppSize.s1, color: ColorManager.primary)),
+                              color: ColorManager.primary)),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10000),
                           borderSide: BorderSide(
-                              width: AppSize.s1, color: ColorManager.primary)),
+                              color: ColorManager.primary)),
                       disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10000),
                           borderSide: BorderSide(
-                              width: AppSize.s1, color: ColorManager.primary)),
+                              color: ColorManager.primary)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10000),
                           borderSide: BorderSide(
-                              width: AppSize.s1, color: ColorManager.primary)),
+                              color: ColorManager.primary)),
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10000),
                           borderSide: BorderSide(
-                              width: AppSize.s1, color: ColorManager.error)),
+                              color: ColorManager.error)),
                       prefixIcon: Icon(CupertinoIcons.search,
                           size: 35.sp, color: ColorManager.primary),
-                      hintText: "what do you search for?",
+                      hintText: 'what do you search for?',
                       hintStyle: getRegularStyle(
                           color: ColorManager.primary, fontSize: FontSize.s16),
                     ),
@@ -77,20 +77,19 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
                   alignment: Alignment.topCenter,
                   label: CartScreenCubit.get(context)
                               .cartResponse
-                              .numOfCartItems ==
-                          null
+                              .numOfCartItems == null
                       ? Text(
                           CartScreenCubit.get(context)
                               .cartResponse
                               .numOfCartItems
                               .toString(),
                           style: getRegularStyle(
-                              color: Colors.white, fontSize: FontSize.s12),
+                              color: Colors.white),
                         )
                       : Text(
                           '0',
                           style: getRegularStyle(
-                              color: Colors.white, fontSize: FontSize.s12),
+                              color: Colors.white),
                         ),
                   child: IconButton(
                       onPressed: () =>

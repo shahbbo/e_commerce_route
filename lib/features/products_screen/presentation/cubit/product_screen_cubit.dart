@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../wishlist_screen/domain/entities/wishList_entity.dart';
+import '../../../wishlist_screen/domain/entities/wish_list_entity.dart';
 import '../../../wishlist_screen/domain/use-cases/add_to_wishlist_use_case.dart';
 import '../../../wishlist_screen/domain/use-cases/get_wishlist_use_case.dart';
 import '../../../wishlist_screen/domain/use-cases/remove_from_wishlist_use_case.dart';
@@ -32,7 +32,7 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   static ProductScreenCubit get(context) => BlocProvider.of(context);
 
   void getAllProducts() async {
-    emit(ProductScreenStates(status: ProductScreenStatus.productsLoading));
+    emit(const ProductScreenStates(status: ProductScreenStatus.productsLoading));
     var either = await getAllProductUseCase.invoke();
     either.fold((l) {
       emit(ProductScreenStates(
@@ -57,14 +57,14 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   }*/
 
   void addToCart(String productId) async {
-    emit(ProductScreenStates(status: ProductScreenStatus.addToCartLoading));
+    emit(const ProductScreenStates(status: ProductScreenStatus.addToCartLoading));
     var either = await addToCartUseCase.invoke(productId);
     either.fold((l) {
       emit(ProductScreenStates(
           status: ProductScreenStatus.addToCartError, failures: l));
     }, (response) {
       emit(
-          ProductScreenStates(status: ProductScreenStatus.addToCartSuccess));
+          const ProductScreenStates(status: ProductScreenStatus.addToCartSuccess));
     });
   }
 
@@ -83,7 +83,7 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   List<DataEntity> wishListDataEntity = [];
 
   void getWishList() async {
-    emit(ProductScreenStates(status: ProductScreenStatus.wishListLoading));
+    emit(const ProductScreenStates(status: ProductScreenStatus.wishListLoading));
     var either = await getWishlistUseCase.invoke();
     either.fold((l) {
       emit(ProductScreenStates(
@@ -114,7 +114,7 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   }
 
   void addToWishList(String productId) async {
-    emit(ProductScreenStates(status: ProductScreenStatus.addRemoveWishListLoading));
+    emit(const ProductScreenStates(status: ProductScreenStatus.addRemoveWishListLoading));
     var either = await addToWishlistUseCase.invoke(productId);
     either.fold((l) {
       emit(ProductScreenStates(
@@ -139,7 +139,7 @@ class ProductScreenCubit extends Cubit<ProductScreenStates> {
   }*/
 
   void removeFromWishList(String productId) async {
-    emit(ProductScreenStates(status: ProductScreenStatus.addRemoveWishListLoading));
+    emit(const ProductScreenStates(status: ProductScreenStatus.addRemoveWishListLoading));
     var either = await removeFromWishlistUseCase.invoke(productId);
     either.fold((l) {
       emit(ProductScreenStates(

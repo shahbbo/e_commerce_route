@@ -27,7 +27,6 @@ class _AppLayoutState extends State<AppLayout> {
     return BlocBuilder<AppCubit, AppStates>(
       builder: (context, state) {
         return Scaffold(
-          extendBody: false,
           body: cubit.tabs[cubit.currentIndex],
           bottomNavigationBar: ClipRRect(
             borderRadius: const BorderRadius.only(
@@ -36,13 +35,20 @@ class _AppLayoutState extends State<AppLayout> {
               height: MediaQuery.of(context).size.height * 0.1,
               child: PopScope(
                 canPop: cubit.currentIndex != 0 ? false : true,
-                onPopInvoked: (result) {
+                onPopInvokedWithResult: (bool didPop, Object? result)  async {
                   if (cubit.currentIndex != 0) {
                     cubit.changeBottomNavBarIndex(0);
                   } else {
                     Navigator.pop(context);
                   }
                 },
+               /* onPopInvoked: (result) {
+                  if (cubit.currentIndex != 0) {
+                    cubit.changeBottomNavBarIndex(0);
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },*/
                 child: BottomNavigationBar(
                   currentIndex: cubit.currentIndex,
                   onTap: (value) => cubit.changeBottomNavBarIndex(value),

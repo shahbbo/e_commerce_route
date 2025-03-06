@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../domain/use_case/signUp_use_case.dart';
+import '../../../../domain/use_case/signup_use_case.dart';
 import 'sign_up_states.dart';
 
 @injectable

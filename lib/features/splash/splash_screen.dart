@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       var token = CacheHelper.getData(key: 'token');
       if (token == null) {
         Navigator.pushReplacementNamed(context, Routes.signInRoute);

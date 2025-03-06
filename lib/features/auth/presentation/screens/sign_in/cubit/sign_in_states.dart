@@ -1,5 +1,5 @@
 
-import '../../../../domain/entities/signIn_entity.dart';
+import '../../../../domain/entities/signin_entity.dart';
 import '../../../../../../core/helpers/remote/failures.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';

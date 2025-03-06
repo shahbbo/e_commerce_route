@@ -1,5 +1,3 @@
-import 'package:e_commerce_route/core/widget/toasts.dart';
-import 'package:e_commerce_route/features/products_screen/presentation/cubit/product_screen_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/resources/color_manager.dart';
 import '../../../core/resources/styles_manager.dart';
 import '../../../core/widget/custom_button.dart';
+import '../../../core/widget/toasts.dart';
+import '../../products_screen/presentation/cubit/product_screen_cubit.dart';
 import '../domain/entities/product_details_entity.dart';
 import 'cubit/product_details_cubit.dart';
 import 'cubit/product_details_state.dart';
@@ -99,7 +99,7 @@ class ProductDetails extends StatelessWidget {
                                     'Total price',
                                     style: getMediumStyle(
                                             color: ColorManager.primary
-                                                .withOpacity(.6))
+                                                .withAlpha(200))
                                         .copyWith(fontSize: 18.sp),
                                   ),
                                   SizedBox(

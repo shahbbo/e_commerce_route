@@ -2,7 +2,7 @@ import 'package:e_commerce_route/features/wishlist_screen/presentation/cubit/wis
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/wishList_entity.dart';
+import '../../domain/entities/wish_list_entity.dart';
 import '../../domain/use-cases/add_to_wishlist_use_case.dart';
 import '../../domain/use-cases/get_wishlist_use_case.dart';
 import '../../domain/use-cases/remove_from_wishlist_use_case.dart';
@@ -23,7 +23,7 @@ class WishListScreenCubit extends Cubit<WishListState> {
   List<DataEntity> wishList = [];
 
   void getWishList() async {
-    emit(WishListState(status: WishListStatus.getWishListLoading));
+    emit(const WishListState(status: WishListStatus.getWishListLoading));
     var either = await getWishlistUseCase.invoke();
     either.fold((l) {
       emit(WishListState(status: WishListStatus.getWishListError, failures: l));
@@ -34,7 +34,7 @@ class WishListScreenCubit extends Cubit<WishListState> {
   }
 
   void addToWishList(String productId) async {
-    emit(WishListState(status: WishListStatus.addRemoveWishListLoading));
+    emit(const WishListState(status: WishListStatus.addRemoveWishListLoading));
     var either = await addToWishlistUseCase.invoke(productId);
     either.fold((l) {
       emit(WishListState(status: WishListStatus.addRemoveWishListError, failures: l));
@@ -45,7 +45,7 @@ class WishListScreenCubit extends Cubit<WishListState> {
   }
 
   void removeFromWishList(String productId) async {
-    emit(WishListState(status: WishListStatus.addRemoveWishListLoading));
+    emit(const WishListState(status: WishListStatus.addRemoveWishListLoading));
     var either = await removeFromWishlistUseCase.invoke(productId);
     either.fold((l) {
       emit(WishListState(status: WishListStatus.addRemoveWishListError, failures: l));

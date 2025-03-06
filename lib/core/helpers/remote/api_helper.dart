@@ -7,7 +7,7 @@ class ApiHelper {
   static Future<Either<Failures, T>> safeApiCall<T>(Future<Response> Function() request, T Function(dynamic data) fromJson,) async {
     var checkResult = await Connectivity().checkConnectivity();
     if (checkResult.contains(ConnectivityResult.none)) {
-      return Left(NetworkError(errorMessage: "No Internet Connection"));
+      return Left(NetworkError(errorMessage: 'No Internet Connection'));
     }
     try {
       final response = await request();
@@ -18,7 +18,7 @@ class ApiHelper {
           return Left(_handleHttpError(response));
         }
       } else {
-        return Left(ServerError(errorMessage: "Unknown Response Status"));
+        return Left(ServerError(errorMessage: 'Unknown Response Status'));
       }
     } on DioException catch (e) {
       return Left(_handleDioError(e));
@@ -42,7 +42,7 @@ class ApiHelper {
         //Not Found
         return ServerError(errorMessage: "${response.data['message']}");
       case 408:
-        return ServerError(errorMessage: "Request Timeout");
+        return ServerError(errorMessage: 'Request Timeout');
       case 409:
         //Conflict
         return ServerError(errorMessage: "${response.data['message']}");
@@ -50,34 +50,34 @@ class ApiHelper {
         //Unprocessable Entity
         return ServerError(errorMessage: "${response.data['message']}");
       case 429:
-        return ServerError(errorMessage: "Too Many Requests");
+        return ServerError(errorMessage: 'Too Many Requests');
       case 500:
-        return ServerError(errorMessage: "Internal Server Error");
+        return ServerError(errorMessage: 'Internal Server Error');
       case 503:
-        return ServerError(errorMessage: "Service Unavailable");
+        return ServerError(errorMessage: 'Service Unavailable');
       case 504:
-        return ServerError(errorMessage: "Gateway Timeout");
+        return ServerError(errorMessage: 'Gateway Timeout');
       default:
-        return ServerError(errorMessage: "Unexpected Error: ${response.statusCode}");
+        return ServerError(errorMessage: 'Unexpected Error: ${response.statusCode}');
     }
   }
 
   static Failures _handleDioError(DioException e) {
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerError(errorMessage: "Connection Timeout");
+        return ServerError(errorMessage: 'Connection Timeout');
       case DioExceptionType.sendTimeout:
-        return ServerError(errorMessage: "Send Timeout");
+        return ServerError(errorMessage: 'Send Timeout');
       case DioExceptionType.receiveTimeout:
-        return ServerError(errorMessage: "Receive Timeout");
+        return ServerError(errorMessage: 'Receive Timeout');
       case DioExceptionType.badResponse:
-        return ServerError(errorMessage: "Bad Response: ${e.response?.statusCode}");
+        return ServerError(errorMessage: 'Bad Response: ${e.response?.statusCode}');
       case DioExceptionType.cancel:
-        return ServerError(errorMessage: "Request Cancelled");
+        return ServerError(errorMessage: 'Request Cancelled');
       case DioExceptionType.connectionError:
-        return NetworkError(errorMessage: "No Internet Connection");
+        return NetworkError(errorMessage: 'No Internet Connection');
       default:
-        return ServerError(errorMessage: "Unknown Dio Error");
+        return ServerError(errorMessage: 'Unknown Dio Error');
     }
   }
 

@@ -5,8 +5,8 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/helpers/remote/api_helper.dart';
 import '../../../../core/helpers/remote/failures.dart';
-import '../data_transfer_object/add_remove_wishList_dto.dart';
-import '../data_transfer_object/wishList_response_dto.dart';
+import '../data_transfer_object/add_remove_wish_list_dto.dart';
+import '../data_transfer_object/wish_list_response_dto.dart';
 import 'wishlist_remote_data_source.dart';
 
 @Injectable(as: WishlistRemoteDataSource)
@@ -33,7 +33,7 @@ class WishlistRemoteDataSourceImpl implements WishlistRemoteDataSource {
   @override
   Future<Either<Failures, AddRemoveWishListDto>> removeFromWishList(String productId) {
     return ApiHelper.safeApiCall(
-          () => apiManager.delete("${EndPoints.wishList}/$productId"),
+          () => apiManager.delete('${EndPoints.wishList}/$productId'),
           (data) => AddRemoveWishListDto.fromJson(data),
     );
   }

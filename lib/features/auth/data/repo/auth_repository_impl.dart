@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/entities/signIn_entity.dart';
-import '../../domain/entities/signUp_entity.dart';
+import '../../domain/entities/signin_entity.dart';
+import '../../domain/entities/signup_entity.dart';
 import '../../../../core/helpers/remote/failures.dart';
 import '../../domain/repo/auth_repository.dart';
 import '../remote_data_source/auth_remote_data_source.dart';
@@ -26,8 +26,8 @@ class AuthRepositoryImpl implements AuthRepository {
       String email, String password) async {
     var either = await authRemoteDataSource.login(email, password);
     either.fold(
-          (error) => print("Failure: ${error.errorMessage}"),
-          (response) => print("Success: ${response.statusMsg}  & ${response.message}"),
+          (error) => print('Failure: ${error.errorMessage}'),
+          (response) => print('Success: ${response.statusMsg}  & ${response.message}'),
     );
     return either.fold((error) => Left(error), (response) => Right(response));
   }

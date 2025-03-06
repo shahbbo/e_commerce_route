@@ -1,8 +1,8 @@
 
 import  '../../../../core/helpers/remote/failures.dart';
-import '../../../wishlist_screen/domain/entities/wishList_entity.dart';
+import '../../../wishlist_screen/domain/entities/wish_list_entity.dart';
 import '../../domain/entities/add_to_cart_entity.dart';
-import '../../../wishlist_screen/domain/entities/add_remove_wishList_entity.dart';
+import '../../../wishlist_screen/domain/entities/add_remove_wish_list_entity.dart';
 import '../../domain/entities/product_entity.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';

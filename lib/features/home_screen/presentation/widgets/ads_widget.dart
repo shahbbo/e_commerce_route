@@ -11,7 +11,6 @@ class AdsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ImageSlideshow(
-      initialPage: 0,
       indicatorColor: ColorManager.primaryDark,
       indicatorBackgroundColor: ColorManager.white,
       indicatorBottomPadding: 20.h,

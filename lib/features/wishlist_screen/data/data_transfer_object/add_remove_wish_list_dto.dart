@@ -1,4 +1,4 @@
-import '../../domain/entities/add_remove_wishList_entity.dart';
+import '../../domain/entities/add_remove_wish_list_entity.dart';
 
 class AddRemoveWishListDto extends AddRemoveWishListEntity{
   AddRemoveWishListDto({

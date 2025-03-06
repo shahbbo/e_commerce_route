@@ -93,7 +93,6 @@ class SignUpScreen extends StatelessWidget {
                         label: 'password',
                         validation: (value) => AppValidators.validatePassword(value),
                         isObscured: true,
-                        textInputType: TextInputType.text,
                         controller: cubit.passwordController,
                       ),
                       SizedBox(
@@ -105,7 +104,6 @@ class SignUpScreen extends StatelessWidget {
                         label: 'Confirm password',
                         validation: (value) => AppValidators.validateConfirmPassword(value, cubit.passwordController.text),
                         isObscured: true,
-                        textInputType: TextInputType.text,
                         controller: cubit.rePasswordController,
                       ),
                       SizedBox(

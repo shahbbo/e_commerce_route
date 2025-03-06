@@ -18,14 +18,14 @@ class DioInterceptor extends Interceptor {
     // print("❌ Dio Error: ${err.message}");
 
     final errorMessages = {
-      DioExceptionType.connectionTimeout: "Connection Timeout",
-      DioExceptionType.sendTimeout: "Send Timeout",
-      DioExceptionType.receiveTimeout: "Receive Timeout",
-      DioExceptionType.cancel: "Request Cancelled",
-      DioExceptionType.connectionError: "No Internet Connection",
-      DioExceptionType.badResponse: "Bad Response: ${err.response?.statusCode} - ${err.response?.data}",
+      DioExceptionType.connectionTimeout: 'Connection Timeout',
+      DioExceptionType.sendTimeout: 'Send Timeout',
+      DioExceptionType.receiveTimeout: 'Receive Timeout',
+      DioExceptionType.cancel: 'Request Cancelled',
+      DioExceptionType.connectionError: 'No Internet Connection',
+      DioExceptionType.badResponse: 'Bad Response: ${err.response?.statusCode} - ${err.response?.data}',
     };
-    err = err.copyWith(error: errorMessages[err.type] ?? "Unexpected Error");
+    err = err.copyWith(error: errorMessages[err.type] ?? 'Unexpected Error');
 
     handler.next(err);
   }

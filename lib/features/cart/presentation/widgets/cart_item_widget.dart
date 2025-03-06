@@ -29,7 +29,7 @@ class CartItemWidget extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14.r),
-            border: Border.all(color: ColorManager.primary, width: 1),
+            border: Border.all(color: ColorManager.primary),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(14.r),
@@ -58,14 +58,13 @@ class CartItemWidget extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Text(
-                        productEntity.product?.title ?? "",
+                        productEntity.product?.title ?? '',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: getBoldStyle(
@@ -103,19 +102,19 @@ class CartItemWidget extends StatelessWidget {
                         int count = productEntity.count!.toInt();
                         count++;
                         cubit.updateCountInCart(
-                            productEntity.product?.id ?? "", count);
+                            productEntity.product?.id ?? '', count);
                       },
                       remove: (i) {
                         int count = productEntity.count!.toInt();
                         count--;
                         cubit.updateCountInCart(
-                            productEntity.product?.id ?? "", count);
+                            productEntity.product?.id ?? '', count);
                       },
                       productCounter: productEntity.count!.toInt(),
                     )
                   ],
                 ),
-                const Spacer(flex: 1,),
+                const Spacer(),
               ],
             ),
           ),

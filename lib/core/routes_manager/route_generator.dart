@@ -17,15 +17,15 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AppLayout());
 
       case Routes.productsScreenRoute:
-        return MaterialPageRoute(builder: (_) => ProductsScreen());
+        return MaterialPageRoute(builder: (_) => const ProductsScreen());
       case Routes.signInRoute:
-        return MaterialPageRoute(builder: (_) => SignInScreen());
+        return MaterialPageRoute(builder: (_) => const SignInScreen());
 
       case Routes.splashScreenRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
 
       case Routes.signUpRoute:
-        return MaterialPageRoute(builder: (_) => SignUpScreen());
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
       default:
         return unDefinedRoute();
     }

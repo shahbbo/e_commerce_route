@@ -75,8 +75,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         Container(
           margin: const EdgeInsets.only(top: AppMargin.m5),
           decoration: BoxDecoration(
-            color: widget.backgroundColor ??
-                ColorManager.darkGrey.withOpacity(.15),
+              color: widget.backgroundColor ??
+                  ColorManager.darkGrey.withAlpha(50),
             borderRadius: BorderRadius.circular(AppSize.s8),
             border: Border.all(color: widget.borderBackgroundColor ?? ColorManager.transparent )
           ),

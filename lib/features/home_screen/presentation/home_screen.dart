@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                AdsWidget(),
+                const AdsWidget(),
                 SizedBox(
                   height: 20.h,
                 ),

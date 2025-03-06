@@ -83,7 +83,6 @@ class SignInScreen extends StatelessWidget {
                         label: 'Password',
                         validation: (value) => AppValidators.validatePassword(value),
                         isObscured: true,
-                        textInputType: TextInputType.text,
                         controller: cubit.passwordController,
                       ),
                       SizedBox(

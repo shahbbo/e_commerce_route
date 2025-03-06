@@ -20,7 +20,7 @@ import '../features/auth/data/remote_data_source/auth_remote_data_source_impl.da
 import '../features/auth/data/repo/auth_repository_impl.dart' as _i401;
 import '../features/auth/domain/repo/auth_repository.dart' as _i981;
 import '../features/auth/domain/use_case/login_use_case.dart' as _i876;
-import '../features/auth/domain/use_case/signUp_use_case.dart' as _i855;
+import '../features/auth/domain/use_case/signup_use_case.dart' as _i855;
 import '../features/auth/presentation/screens/sign_in/cubit/sign_in_cubit.dart'
     as _i203;
 import '../features/auth/presentation/screens/sign_up/cubit/sign_up_cubit.dart'

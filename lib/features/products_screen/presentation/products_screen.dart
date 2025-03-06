@@ -24,7 +24,7 @@ class ProductsScreen extends StatelessWidget {
               state.status == ProductScreenStatus.wishListLoading ||
               state.status == ProductScreenStatus.addRemoveWishListLoading,
           child: Scaffold(
-            appBar: GlobalAppBar(),
+            appBar: const GlobalAppBar(),
             body: state.status == ProductScreenStatus.productsLoading
                 ? Center(
                     child: CircularProgressIndicator(
@@ -62,7 +62,6 @@ class ProductsScreen extends StatelessWidget {
                                             .productsList![index]),
                               );
                             },
-                            scrollDirection: Axis.vertical,
                           ),
                         )
                       ],

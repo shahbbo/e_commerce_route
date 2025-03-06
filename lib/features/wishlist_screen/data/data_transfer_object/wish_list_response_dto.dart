@@ -1,4 +1,4 @@
-import '../../domain/entities/wishList_entity.dart';
+import '../../domain/entities/wish_list_entity.dart';
 
 class WishListDto extends WishListEntity {
   WishListDto({

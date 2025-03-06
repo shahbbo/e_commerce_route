@@ -4,7 +4,7 @@ class AppValidators {
   AppValidators();
 
   static String? validateEmail(String? val) {
-    RegExp emailRegex = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+    RegExp emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     if (val == null || val.trim().isEmpty) {
       return 'Please enter your email';
     } else if (emailRegex.hasMatch(val) == false) {
@@ -45,7 +45,7 @@ class AppValidators {
 
   }
   static String? validateFullName(String? val) {
-    RegExp fullNameRegex = RegExp(r"^[a-zA-Z\s]+$");
+    RegExp fullNameRegex = RegExp(r'^[a-zA-Z\s]+$');
     if (val == null || val.isEmpty) {
       return 'Please enter your full name';
     } else if (!fullNameRegex.hasMatch(val)) {
@@ -57,9 +57,9 @@ class AppValidators {
   static String? validatePhoneNumber(String? val) {
     final RegExp phoneRegExp = RegExp(r'^(01[0-2]|015)\d{8}$');
     if (val == null || val.isEmpty) {
-      return "Please enter your phone number.";
+      return 'Please enter your phone number.';
     } else if (!phoneRegExp.hasMatch(val)) {
-      return "Invalid phone number format. Use 01XXXXXXXXX.";
+      return 'Invalid phone number format. Use 01XXXXXXXXX.';
     }
     return null;
   }

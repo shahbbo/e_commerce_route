@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import '../entities/signUp_entity.dart';
 import '../../../../core/helpers/remote/failures.dart';
+import '../entities/signup_entity.dart';
 import '../repo/auth_repository.dart';
 
 @injectable

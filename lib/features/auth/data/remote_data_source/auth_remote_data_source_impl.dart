@@ -6,7 +6,7 @@ import '../../../../core/resources/constants_manager.dart';
 import '../../../../core/helpers/remote/failures.dart';
 import '../../../../core/helpers/remote/dio_helper.dart';
 import '../data_transfer_object/login_dto.dart';
-import '../data_transfer_object/signUp_dto.dart';
+import '../data_transfer_object/signup_dto.dart';
 import 'auth_remote_data_source.dart';
 
 @Injectable(as: AuthRemoteDataSource)
@@ -20,11 +20,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       String password, String rePassword, String phone) async {
     return ApiHelper.safeApiCall(
       () => apiManager.post(EndPoints.register, body: {
-        "name": name,
-        "email": email,
-        "password": password,
-        "rePassword": rePassword,
-        "phone": phone
+        'name': name,
+        'email': email,
+        'password': password,
+        'rePassword': rePassword,
+        'phone': phone
       }),
       (data) => SignUpResponseDto.fromJson(data),
     );
@@ -35,7 +35,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       String email, String password) async {
     return ApiHelper.safeApiCall(
       () => apiManager
-          .post(EndPoints.login, body: {"email": email, "password": password}),
+          .post(EndPoints.login, body: {'email': email, 'password': password}),
       (data) => LoginDto.fromJson(data),
     );
   }

@@ -8,7 +8,7 @@ import '../cubit/wish_list_state.dart';
 import 'heart_button.dart';
 import '../../../../core/resources/styles_manager.dart';
 import '../../../product_details/presentation/product_details.dart';
-import '../../domain/entities/wishList_entity.dart';
+import '../../domain/entities/wish_list_entity.dart';
 import '../cubit/wish_list_cubit.dart';
 import 'add_to_cart_button.dart';
 import 'custom_txt_widget.dart';
@@ -33,7 +33,7 @@ class WishListItem extends StatelessWidget {
         padding: EdgeInsets.only(right: AppSize.s8.w),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSize.s16.r),
-            border: Border.all(color: ColorManager.primary.withOpacity(.3))),
+            border: Border.all(color: ColorManager.primary.withAlpha(70))),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -41,7 +41,7 @@ class WishListItem extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppSize.s16.r),
                   border:
-                      Border.all(color: ColorManager.primary.withOpacity(.6))),
+                      Border.all(color: ColorManager.primary.withAlpha(200))),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(AppSize.s16.r),
                 child: CachedNetworkImage(
@@ -96,12 +96,12 @@ class WishListItem extends StatelessWidget {
                                       data: 'EGP ${product.price! * 1.3}',
                                       textStyle: getMediumStyle(
                                           color: ColorManager.appBarTitleColor
-                                              .withOpacity(.6))
+                                              .withAlpha(200))
                                           .copyWith(
                                           letterSpacing: 0.17,
                                           decoration: TextDecoration.lineThrough,
                                           color: ColorManager.appBarTitleColor
-                                              .withOpacity(.6),
+                                              .withAlpha(200),
                                           fontSize: AppSize.s10.sp)),
                                 ],
                               ),

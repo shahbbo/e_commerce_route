@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/helpers/remote/failures.dart';
-import '../../domain/entities/add_remove_wishList_entity.dart';
-import '../../domain/entities/wishList_entity.dart';
+import '../../domain/entities/add_remove_wish_list_entity.dart';
+import '../../domain/entities/wish_list_entity.dart';
 
 abstract class WishlistRemoteDataSource {
 

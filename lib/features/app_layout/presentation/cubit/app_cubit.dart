@@ -11,9 +11,9 @@ class AppCubit extends Cubit<AppStates>{
   AppCubit():super(AppInitialState());
   int currentIndex = 0;
   List<Widget> tabs = [
-    HomeScreen(),
-    ProductsScreen(),
-    WishListScreen(),
+    const HomeScreen(),
+    const ProductsScreen(),
+    const WishListScreen(),
     const ProfileScreen(),
   ];
   void changeBottomNavBarIndex(int selectedIndex) {

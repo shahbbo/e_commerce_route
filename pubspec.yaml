@@ -59,6 +59,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   talker: ^4.6.14
   logger: ^2.5.0
+  hydrated_bloc: ^10.0.0
 
 
 dev_dependencies:

@@ -18,8 +18,7 @@ class ProductRating extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             border: Border.all(
-                color: ColorManager.primary.withOpacity(.3),
-                width: 1),
+                color: ColorManager.primary.withAlpha(200)),
             borderRadius: BorderRadius.circular(20.r),
           ),
           padding:

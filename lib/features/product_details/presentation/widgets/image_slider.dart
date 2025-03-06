@@ -21,7 +21,6 @@ class ImageSlider extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.r),
         child: ImageSlideshow(
-            initialPage: 0,
             indicatorColor: ColorManager.primaryDark,
             indicatorBackgroundColor: ColorManager.white,
             indicatorBottomPadding: 20.h,

@@ -42,7 +42,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         color: ColorManager.primary, fontSize: FontSize.s18),
                   ),
                   IconButton(
-                    icon: Icon(Icons.logout),
+                    icon: const Icon(Icons.logout),
                     onPressed: () {
                       CacheHelper.removeData(key: 'token');
                       Navigator.of(context).pushNamedAndRemoveUntil(
@@ -54,13 +54,13 @@ class ProfileScreenState extends State<ProfileScreen> {
               Text(
                 'mohamed.N@gmail.com',
                 style: getRegularStyle(
-                    color: ColorManager.primary.withOpacity(.5),
+                    color: ColorManager.primary.withAlpha(125),
                     fontSize: FontSize.s14),
               ),
               SizedBox(height: AppSize.s18.h),
               // name
               CustomTextField(
-                borderBackgroundColor: ColorManager.primary.withOpacity(.5),
+                borderBackgroundColor: ColorManager.primary.withAlpha(125),
                 readOnly: isFullNameReadOnly,
                 backgroundColor: ColorManager.white,
                 hint: 'Enter your full name',
@@ -69,14 +69,13 @@ class ProfileScreenState extends State<ProfileScreen> {
                 labelTextStyle: getMediumStyle(
                     color: ColorManager.primary, fontSize: FontSize.s18),
                 suffixIcon: IconButton(
-                  icon: isFullNameReadOnly ? Icon(Icons.edit_off_outlined) : Icon(Icons.mode_edit_outline_rounded),
+                  icon: isFullNameReadOnly ? const Icon(Icons.edit_off_outlined) : const Icon(Icons.mode_edit_outline_rounded),
                   onPressed: () {
                     setState(() {
                       isFullNameReadOnly = !isFullNameReadOnly;
                     });
                   },
                 ),
-                textInputType: TextInputType.text,
                 validation: AppValidators.validateFullName,
                 hintTextStyle: getRegularStyle(color: ColorManager.primary)
                     .copyWith(fontSize: 18.sp),
@@ -84,7 +83,7 @@ class ProfileScreenState extends State<ProfileScreen> {
               SizedBox(height: AppSize.s18.h),
               // email
               CustomTextField(
-                borderBackgroundColor: ColorManager.primary.withOpacity(.5),
+                borderBackgroundColor: ColorManager.primary.withAlpha(125),
                 readOnly: isEmailReadOnly,
                 backgroundColor: ColorManager.white,
                 hint: 'Enter your email address',
@@ -93,7 +92,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                 labelTextStyle: getMediumStyle(
                     color: ColorManager.primary, fontSize: FontSize.s18),
                 suffixIcon: IconButton(
-                  icon: isEmailReadOnly ? Icon(Icons.edit_off_outlined) : Icon(Icons.mode_edit_outline_rounded),
+                  icon: isEmailReadOnly ? const Icon(Icons.edit_off_outlined) : const Icon(Icons.mode_edit_outline_rounded),
                   onPressed: () {
                     setState(() {
                       isEmailReadOnly = !isEmailReadOnly;
@@ -109,14 +108,13 @@ class ProfileScreenState extends State<ProfileScreen> {
               CustomTextField(
                 onTap: () {},
                 controller: TextEditingController(text: '123456789123456'),
-                borderBackgroundColor: ColorManager.primary.withOpacity(.5),
+                borderBackgroundColor: ColorManager.primary.withAlpha(125),
                 readOnly: isPasswordReadOnly,
                 backgroundColor: ColorManager.white,
                 hint: 'Enter your password',
                 label: 'Password',
                 isObscured: true,
                 labelTextStyle: getMediumStyle(color: ColorManager.primary, fontSize: FontSize.s18),
-                textInputType: TextInputType.text,
                 validation: AppValidators.validatePassword,
                 hintTextStyle: getRegularStyle(color: ColorManager.primary).copyWith(fontSize: 18.sp),
               ),
@@ -124,7 +122,7 @@ class ProfileScreenState extends State<ProfileScreen> {
               // mobile number
               CustomTextField(
                 controller: TextEditingController(text: '01122118855'),
-                borderBackgroundColor: ColorManager.primary.withOpacity(.5),
+                borderBackgroundColor: ColorManager.primary.withAlpha(125),
                 readOnly: isMobileNumberReadOnly,
                 backgroundColor: ColorManager.white,
                 hint: 'Enter your mobile no.',
@@ -132,7 +130,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                 labelTextStyle: getMediumStyle(
                     color: ColorManager.primary, fontSize: FontSize.s18),
                 suffixIcon: IconButton(
-                  icon: isMobileNumberReadOnly ? Icon(Icons.edit_off_outlined) : Icon(Icons.mode_edit_outline_rounded),
+                  icon: isMobileNumberReadOnly ? const Icon(Icons.edit_off_outlined) : const Icon(Icons.mode_edit_outline_rounded),
                   onPressed: () {
                     setState(() {
                       isMobileNumberReadOnly = !isMobileNumberReadOnly;
@@ -149,7 +147,7 @@ class ProfileScreenState extends State<ProfileScreen> {
               CustomTextField(
                 controller:
                     TextEditingController(text: '6th October, street 11.....'),
-                borderBackgroundColor: ColorManager.primary.withOpacity(.5),
+                borderBackgroundColor: ColorManager.primary.withAlpha(125),
                 readOnly: isAddressReadOnly,
                 backgroundColor: ColorManager.white,
                 hint: '6th October, street 11.....',
@@ -157,7 +155,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                 labelTextStyle: getMediumStyle(
                     color: ColorManager.primary, fontSize: FontSize.s18),
                 suffixIcon: IconButton(
-                  icon: isAddressReadOnly ? Icon(Icons.edit_off_outlined) : Icon(Icons.mode_edit_outline_rounded),
+                  icon: isAddressReadOnly ? const Icon(Icons.edit_off_outlined) : const Icon(Icons.mode_edit_outline_rounded),
                   onPressed: () {
                     setState(() {
                       isAddressReadOnly = !isAddressReadOnly;

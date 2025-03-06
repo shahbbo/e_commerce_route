@@ -107,7 +107,7 @@ class ProductItemWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "EGP ${productEntity.price}",
+                      'EGP ${productEntity.price}',
                       maxLines: 1,
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             fontSize: 14.sp,
@@ -129,7 +129,7 @@ class ProductItemWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "  (${productEntity.ratingsAverage})",
+                      '  (${productEntity.ratingsAverage})',
                       maxLines: 1,
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                             fontSize: 14.sp,
@@ -140,13 +140,11 @@ class ProductItemWidget extends StatelessWidget {
                     SizedBox(
                       width: 7.w,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.star_rate_rounded,
                       color: ColorManager.starRateColor,
                     ),
-                    const Spacer(
-                      flex: 1,
-                    ),
+                    const Spacer(),
                     InkWell(
                       onTap: () {
                         ProductScreenCubit.get(context)

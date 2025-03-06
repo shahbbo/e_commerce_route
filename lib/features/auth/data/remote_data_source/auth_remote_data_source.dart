@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import '../../domain/entities/signIn_entity.dart';
-import '../../domain/entities/signUp_entity.dart';
+import '../../domain/entities/signin_entity.dart';
+import '../../domain/entities/signup_entity.dart';
 import '../../../../core/helpers/remote/failures.dart';
 
 abstract class AuthRemoteDataSource{
