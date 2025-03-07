@@ -265,6 +265,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  dart_format:
+    dependency: "direct main"
+    description:
+      name: dart_format
+      sha256: f6b641e62891c240e98c2622744c8e397bbfd599ecd490357fef5d3cb4e17bd1
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   dart_style:
     dependency: transitive
     description:
@@ -305,6 +313,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  eggnstone_dart:
+    dependency: transitive
+    description:
+      name: eggnstone_dart
+      sha256: "09bf0bc0ddfcc03743166d81c911593ce6ed248e3a4311a0f9c7e8440d4ba097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.3"
   fake_async:
     dependency: transitive
     description:
@@ -512,6 +528,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.7.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.20.2"
   io:
     dependency: transitive
     description:

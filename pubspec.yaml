@@ -60,6 +60,7 @@ dependencies:
   talker: ^4.6.14
   logger: ^2.5.0
   hydrated_bloc: ^10.0.0
+  dart_format: ^1.4.0
 
 
 dev_dependencies:

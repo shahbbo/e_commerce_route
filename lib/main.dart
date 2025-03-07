@@ -16,28 +16,37 @@ import 'features/product_details/presentation/cubit/product_details_cubit.dart';
 import 'features/products_screen/presentation/cubit/product_screen_cubit.dart';
 import 'features/wishlist_screen/presentation/cubit/wish_list_cubit.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
   configureDependencies();
-  runApp(MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => AppCubit()),
-        BlocProvider(create: (context) => getIt<SignInCubit>()),
-        BlocProvider(create: (context) => getIt<SignUpCubit>()),
-        BlocProvider(create: (context) => getIt<HomeScreenCubit>()..getAllCategoriesAndBrands() , lazy: false),
-        BlocProvider(create: (context) => getIt<ProductScreenCubit>()..getAllProducts()..getWishList(), lazy: false),
-        BlocProvider(create: (context) => getIt<CartScreenCubit>()..getCart(), lazy: false),
-        BlocProvider(create: (context) => getIt<WishListScreenCubit>()..getWishList(), lazy: false),
-        BlocProvider(create: (context) => getIt<ProductDetailsCubit>()),
-      ],
-      child: const MainApp()));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(create: (context) => AppCubit()),
+    BlocProvider(create: (context) => getIt<SignInCubit>()),
+    BlocProvider(create: (context) => getIt<SignUpCubit>()),
+    BlocProvider(
+        create: (context) =>
+            getIt<HomeScreenCubit>()..getAllCategoriesAndBrands(),
+        lazy: false),
+    BlocProvider(
+        create: (context) => getIt<ProductScreenCubit>()
+          ..getAllProducts()
+          ..getWishList(),
+        lazy: false),
+    BlocProvider(
+        create: (context) => getIt<CartScreenCubit>()..getCart(), lazy: false),
+    BlocProvider(
+        create: (context) => getIt<WishListScreenCubit>()..getWishList(),
+        lazy: false),
+    BlocProvider(create: (context) => getIt<ProductDetailsCubit>()),
+  ], child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
-   const MainApp({super.key,});
+  const MainApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
